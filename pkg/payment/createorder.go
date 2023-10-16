@@ -23,6 +23,9 @@ func (c *Client) CreateOrder(ctx context.Context, request CreateOrderRequest) (*
 	request.APIKey = c.APIKey
 	dataString := utils.SortFields(request)
 	signature, err := utils.GenerateHMAC(dataString, c.SecretKey)
+	if err != nil {
+		return nil, fmt.Errorf("error generating hmac. err: %v", err)
+	}
 	request.S = signature
 	form := utils.EncodeForm(request)
 
