@@ -30,6 +30,12 @@ func main() {
 	}
 	fmt.Println(status)
 
+	statusByID, err := getStatusByCommerceID(ctx, client, "")
+	if err != nil {
+		fmt.Println("error: ", err)
+	}
+	fmt.Println(statusByID)
+
 }
 
 func createOrder(ctx context.Context, client *payment.Client) (*payment.CreateOrderResponse, error) {
@@ -52,6 +58,14 @@ func createOrder(ctx context.Context, client *payment.Client) (*payment.CreateOr
 
 func getStatus(ctx context.Context, client *payment.Client, token string) (*payment.Status, error) {
 	status, err := client.GetStatus(ctx, token)
+	if err != nil {
+		return nil, err
+	}
+	return status, nil
+}
+
+func getStatusByCommerceID(ctx context.Context, client *payment.Client, commerceID string) (*payment.Status, error) {
+	status, err := client.GetStatusByCommerceID(ctx, commerceID)
 	if err != nil {
 		return nil, err
 	}

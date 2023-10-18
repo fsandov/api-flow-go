@@ -83,7 +83,8 @@ type PendingInfo struct {
 
 // StatusURIData is the data to be encoded for GetStatus method.
 type StatusURIData struct {
-	APIKey string `json:"apiKey"`
-	Token  string `json:"token"`
-	S      string `json:"s"`
+	APIKey     string `json:"apiKey"`
+	Token      string `json:"token"`
+	CommerceID string `json:"commerceId"`
+	S          string `json:"s"`
 }
