@@ -11,6 +11,7 @@ import (
 	"strings"
 )
 
+// SortFields sorts the fields of a struct by the json tag and returns a string with the fields concatenated.
 func SortFields(request interface{}) string {
 	rt := reflect.TypeOf(request)
 	rv := reflect.ValueOf(request)
@@ -31,6 +32,7 @@ func SortFields(request interface{}) string {
 	return result
 }
 
+// GenerateHMAC generates a HMAC with sha256 algorithm and returns a string with the signature.
 func GenerateHMAC(value, secret string) (string, error) {
 	key := []byte(secret)
 	message := []byte(value)
@@ -42,6 +44,7 @@ func GenerateHMAC(value, secret string) (string, error) {
 	return signature, nil
 }
 
+// EncodeForm encodes a struct to a url.Values and returns a string with the encoded form.
 func EncodeForm(request interface{}) string {
 	form := url.Values{}
 
