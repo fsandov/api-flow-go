@@ -25,6 +25,7 @@ type (
 		BaseURL BaseURL
 	}
 
+	// ClientOption is the type for the options of the Client.
 	ClientOption func(*clientOptions)
 )
 
