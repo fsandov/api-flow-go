@@ -36,6 +36,12 @@ func main() {
 	}
 	fmt.Println(statusByID)
 
+	statusByFlowOrder, err := getStatusByFlowOrder(ctx, client, "")
+	if err != nil {
+		fmt.Println("error: ", err)
+	}
+	fmt.Println(statusByFlowOrder)
+
 }
 
 func createOrder(ctx context.Context, client *payment.Client) (*payment.CreateOrderResponse, error) {
@@ -66,6 +72,14 @@ func getStatus(ctx context.Context, client *payment.Client, token string) (*paym
 
 func getStatusByCommerceID(ctx context.Context, client *payment.Client, commerceID string) (*payment.Status, error) {
 	status, err := client.GetStatusByCommerceID(ctx, commerceID)
+	if err != nil {
+		return nil, err
+	}
+	return status, nil
+}
+
+func getStatusByFlowOrder(ctx context.Context, client *payment.Client, flowOrder string) (*payment.Status, error) {
+	status, err := client.GetStatusFlowOrder(ctx, flowOrder)
 	if err != nil {
 		return nil, err
 	}

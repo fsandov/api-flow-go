@@ -85,6 +85,7 @@ type PendingInfo struct {
 type StatusURIData struct {
 	APIKey     string `json:"apiKey"`
 	Token      string `json:"token"`
+	FlowOrder  string `json:"flowOrder"`
 	CommerceID string `json:"commerceId"`
 	S          string `json:"s"`
 }
